@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>esupMobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="medias/jquery.mobile-1.1.0/jquery.mobile-1.1.0-rc.2.min.css" />
+<script type="text/javascript" charset="utf-8" src="cordova-1.6.0.js"></script>
+<script src="medias/jquery/jquery-1.7.1.min.js"></script>
+<script src="medias/jquery.mobile-1.1.0/jquery.mobile-1.1.0-rc.2.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="esup.js"></script>
+</head>
+<body>
+
+<div data-role="page">
+
+<div data-role="header">
+  <a id="portalHome" href="#" data-icon="home" data-iconpos="notext">Home</a>  <h1>uMobile HTML5 !</h1>
+  <a id="portalOptions" href="#" data-icon="gear" data-iconpos="notext">Options</a>
+</div><!-- /header -->
+
+<div class="ui-bar">
+  <h3>
+  <a id="portalRefresh" href="#" data-role="button" data-iconpos="notext" data-icon="refresh" data-inline="true">Refresh</a>
+  <span id="portalWelcome"></span>
+  </h3>
+</div>
+
+<div data-role="content">
+
+  <div id="portalParameters">
+    
+    <form name="portalParametersForm">
+
+      <select name="instituteParamForm" id="instituteParamForm">
+	  </select>
+
+      <label for="usernameParamForm">Username:</label>
+      <input id="usernameParamForm" type="text">
+
+      <label for="passwordParamForm">Password:</label>
+      <input id="passwordParamForm" type="password">
+
+      <a href="#" id="saveForm" data-icon="check" data-theme="b" data-role="button">Save</a>
+
+    </form>
+
+  </div>
+
+
+  <ul id="portalMenu" data-role="listview" data-inset="true">
+    <li data-role="list-divider">Native uMobile apps</li>
+    <li><a href="#">Map</a></li>
+  </ul>
+
+  <div id="portletContent">
+  </div>
+
+  <div id="portalDummy">
+    <iframe src="dummy.html"></iframe>
+  </div>
+
+
+</div><!-- /content -->
+
+</div><!-- /page -->
+
+    
+</body>
+</html>
+
