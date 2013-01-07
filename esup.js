@@ -39,24 +39,24 @@ function showPortalMenu(data) {
     var items = [];
 
     $.each(folders, function(i) { 
-	items.push('<li data-role="list-divider">' + this['title'] + '</li>');
-	portlets = this['portlets'];
-	$.each(portlets, function(j) {
-	    var url =  this['url'];
-		items.push('<li><a href="#" rel="' + uportalParameters['baseUrl'] + url + '" class="portletLink">' + this['title'] + '</a></li>');
-	});
+		items.push('<li data-role="list-divider">' + this['title'] + '</li>');
+		portlets = this['portlets'];
+		$.each(portlets, function(j) {
+		    var url =  this['url'];
+			items.push('<li><a href="#" rel="' + uportalParameters['baseUrl'] + url + '" class="portletLink">' + this['title'] + '</a></li>');
+		});
     });
     $('#portalMenu').html(items.join(''));
     $('#portalMenu').listview('refresh');
 
     $('.portletLink').click(function() {
-	$('#portalMenu').hide();
-	var htmlFrame = '<iframe src="' + this['rel'] + '" width="100%" frameBorder="0"></iframe>';
-	$('#portletContent').html(htmlFrame);
-	$('#portletContent iframe').load(function() {
-	    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
-	});
-	$('#portletContent').show();
+		$('#portalMenu').hide();
+		var htmlFrame = '<iframe src="' + this['rel'] + '" width="100%" frameBorder="0"></iframe>';
+		$('#portletContent').html(htmlFrame);
+		$('#portletContent iframe').load(function() {
+		    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
+		});
+		$('#portletContent').show();
     });
 
 }
@@ -67,14 +67,14 @@ function casLoginForm(username, password, institute) {
 	var casBaseUrl = institute['casBaseUrl'];
 	
     $.get(casLoginUrl, function(data) {
-	var div = $('#portalDummy iframe').contents().find('#dummy');
-	var form = $(data).find('form');
-	var formAction = casBaseUrl + form.attr('action');
-	form.attr('action', formAction);
-	form.find('input#username').val(username);
-	form.find('input#password').val(password);
-	div.html(form);
-	div.find('[name=submit]').click();
+		var div = $('#portalDummy iframe').contents().find('#dummy');
+		var form = $(data).find('form');
+		var formAction = casBaseUrl + form.attr('action');
+		form.attr('action', formAction);
+		form.find('input#username').val(username);
+		form.find('input#password').val(password);
+		div.html(form);
+		div.find('[name=submit]').click();
     });
 };
 
@@ -89,32 +89,32 @@ $(document).ready(function() {
     showLayout();
 
     $('#portalHome').click(function() {                   
-	$('#portletContent').hide();
-	$('#portalMenu').show();
-	$('#portalParameters').hide();
+		$('#portletContent').hide();
+		$('#portalMenu').show();
+		$('#portalParameters').hide();
     });
 
     $('#portalRefresh').click(function() {                   
-	showLayout();
+		showLayout();
     });
 
     $('#portalOptions').click(function() {
-	$('#portalMenu').hide();                   
-	$('#portletContent').hide();                   
-	$('#portalParameters').show();
+		$('#portalMenu').hide();                   
+		$('#portletContent').hide();                   
+		$('#portalParameters').show();
     });
 
     $('#saveForm').click(function() {            
-	username = $('#usernameParamForm').val();
-	localStorage.setItem("username", username);
-	password = $('#passwordParamForm').val();
-	localStorage.setItem("password", password);
-	institute = $('#instituteParamForm').val();
-	localStorage.setItem("institute", institute);						 
-	authenticate();
-	showLayout();
-	$('#portalParameters').hide();
-	$('#portalMenu').show();                   
+		username = $('#usernameParamForm').val();
+		localStorage.setItem("username", username);
+		password = $('#passwordParamForm').val();
+		localStorage.setItem("password", password);
+		institute = $('#instituteParamForm').val();
+		localStorage.setItem("institute", institute);						 
+		authenticate();
+		showLayout();
+		$('#portalParameters').hide();
+		$('#portalMenu').show();                   
     });    
     				  
     username = localStorage.getItem("username");
@@ -124,16 +124,16 @@ $(document).ready(function() {
     var options = [];
     options.push('<option value=""></option>');
     $.each(uportalParameters['institutes'], function(instituteId, institute) {
-	options.push('<option value="' + instituteId + '">' + institute['title'] + '</option>');
+		options.push('<option value="' + instituteId + '">' + institute['title'] + '</option>');
     });		  
     $('#instituteParamForm').html(options.join(''));	  
 
     if(username!=null)
-	$('#usernameParamForm').val(username);
+		$('#usernameParamForm').val(username);
     if(password!=null)
-	$('#passwordParamForm').val(password);
+		$('#passwordParamForm').val(password);
     if(institute!=null)
-	$('#instituteParamForm').val(institute);
+		$('#instituteParamForm').val(institute);
     $('#instituteParamForm').selectmenu("refresh");
 
 });
