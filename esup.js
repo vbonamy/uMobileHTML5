@@ -9,8 +9,8 @@ var uportalParameters = {
 			"casLoginUrl" : "https://esup4-dev.unr-runn.fr/wayf-bypass/univ-rouen",
 			"casBaseUrl" : "https://cas.univ-rouen.fr"
 		}
-	}
-	
+	},
+	"displayPortletMode" : "frame" // displayPortletMode : content or frame
 };
 
 function authenticate()
@@ -50,7 +50,10 @@ function showPortalMenu(data) {
     $('#portalMenu').listview('refresh');
 
     $('.portletLink').click(function() {
-	    displayPortletLikeFrame(this);
+	    if(uportalParameters['displayPortletMode'] == 'frame')
+		displayPortletLikeFrame(this);
+	    else
+		displayPortletLikeContent(this);
     });
 
 }
@@ -62,6 +65,12 @@ function displayPortletLikeFrame(link) {
     $('#portletContent iframe').load(function() {
 	    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
 	});
+    $('#portletContent').show();
+}
+
+function displayPortletLikeContent(link) {
+    $('#portalMenu').hide();
+    $('#portletContent').load(link['rel']);
     $('#portletContent').show();
 }
 
