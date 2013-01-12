@@ -50,15 +50,19 @@ function showPortalMenu(data) {
     $('#portalMenu').listview('refresh');
 
     $('.portletLink').click(function() {
-		$('#portalMenu').hide();
-		var htmlFrame = '<iframe src="' + this['rel'] + '" width="100%" frameBorder="0"></iframe>';
-		$('#portletContent').html(htmlFrame);
-		$('#portletContent iframe').load(function() {
-		    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
-		});
-		$('#portletContent').show();
+	    displayPortletLikeFrame(this);
     });
 
+}
+
+function displayPortletLikeFrame(link) {
+    $('#portalMenu').hide();
+    var htmlFrame = '<iframe src="' + link['rel'] + '" width="100%" frameBorder="0"></iframe>';
+    $('#portletContent').html(htmlFrame);
+    $('#portletContent iframe').load(function() {
+	    this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
+	});
+    $('#portletContent').show();
 }
 
 function casLoginForm(username, password, institute) {
