@@ -43,17 +43,19 @@ function showPortalMenu(data) {
 		portlets = this['portlets'];
 		$.each(portlets, function(j) {
 		    var url =  this['url'];
-			items.push('<li><a href="#" rel="' + uportalParameters['baseUrl'] + url + '" class="portletLink">' + this['title'] + '</a></li>');
+		    if(uportalParameters['displayPortletMode'] == 'content')
+			url = url.replace('/detached/', '/exclusive/');
+		    items.push('<li><a href="#" rel="' + uportalParameters['baseUrl'] + url + '" class="portletLink">' + this['title'] + '</a></li>');
 		});
     });
     $('#portalMenu').html(items.join(''));
     $('#portalMenu').listview('refresh');
 
     $('.portletLink').click(function() {
-	    if(uportalParameters['displayPortletMode'] == 'frame')
-		displayPortletLikeFrame(this);
-	    else
+	    if(uportalParameters['displayPortletMode'] == 'content')
 		displayPortletLikeContent(this);
+	    else
+		displayPortletLikeFrame(this);
     });
 
 }
